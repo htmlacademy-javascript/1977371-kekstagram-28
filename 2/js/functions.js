@@ -25,7 +25,7 @@ const extractNumber = (string) => {
 
 // Функция, принимающая три параметра: исходную строку, мин. длину и строку с добавочными символами - и возвращает исходную строку, дополненную указанными символами до заданной длины.
 const myPadStart = (string, minLength, pad) => {
-  const actualPad = minLength - string.Length;
+  const actualPad = minLength - string.length;
   if (actualPad <= 0) {
     return string;
   }
