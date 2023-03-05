@@ -1,5 +1,6 @@
+/* eslint-disable no-unused-vars */
 // Функция проверки длины строки.
-const checkLength = (string, number) => string.Length <= number;
+const checkLength = (string, number) => string.length <= number;
 checkLength('Hello', 10);
 
 // Функция для проверки, является ли строка палиндромом.
