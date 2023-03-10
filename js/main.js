@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+const PHOTO_CARD = 25;
+
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
@@ -5,41 +8,21 @@ const getRandomPositiveInteger = (a, b) => {
   return Math.floor(result);
 };
 
-function createRandomIdFromRangeGenerator (min, max) {
-  const previousValues = [];
-
-  return function () {
-    // eslint-disable-next-line no-undef
-    let currentValue = getRandomInteger(min, max);
-
-    while (previousValues.includes(currentValue)) {
-      // eslint-disable-next-line no-undef
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
+// id, число — идентификатор описания. Это число от 1 до 25. Идентификаторы не должны повторяться.
+const randomStartId = 1; // От какого числа генерировать
+const randomEndId = 25; // До какого числа генерировать
+const arrayId = [];
+for (let i = randomStartId; i <= randomEndId; i++) {
+  arrayId.push(i);
 }
 
-const generatePhotoId = createRandomIdFromRangeGenerator(1, 25);
-
-function createRandomUrlFromRangeGenerator (min, max) {
-  const previousValues = [];
-
-  return function () {
-    // eslint-disable-next-line no-undef
-    let currentValue = getRandomInteger(min, max);
-
-    while (previousValues.includes(currentValue)) {
-      // eslint-disable-next-line no-undef
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
+// url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
+const randomStartUrl = 1; // От какого генерировать
+const randomEndUrl = 25; // До какого генерировать
+const arrayUrl = [];
+for (let i = randomStartUrl; i <= randomEndUrl; i++) {
+  arrayUrl.push(i);
 }
-
-const generatePhotoUrl = createRandomUrlFromRangeGenerator(1, 25);
 
 // description, строка — описание фотографии. Описание придумайте самостоятельно.
 const DESCRIPTION = [
@@ -76,12 +59,13 @@ const Names = [
   'Кристоф',
   'Виктор',
   'Юлия',
-  'Станислав',
-  'Евгений',
+  'Лолита',
+  'Бергамонт',
 ];
 
+
 const randomFotoDescription = () => {
-  const randomIdIndex = generatePhotoId.shift();
+  const randomIdIndex = arrayId.shift();
   const randomNamesIndex = getRandomPositiveInteger(0, Names.length - 1);
   const randomMessageIndex = getRandomPositiveInteger(0, Message.length - 1);
 
@@ -102,8 +86,9 @@ const createComments = (number) => {
   return comments;
 };
 
+
 const randomFoto = () => {
-  const randomUrlIndex = generatePhotoUrl.shift();
+  const randomUrlIndex = arrayUrl.shift();
   const description = DESCRIPTION[getRandomPositiveInteger(0, 4)];
   const likes = getRandomIntInc(15, 200);
 
@@ -116,5 +101,6 @@ const randomFoto = () => {
   };
 };
 
-// eslint-disable-next-line no-unused-vars
-const createFotos = (count) => Array.from({length: count}, randomFoto);
+const createFotos = () => Array.from({length: PHOTO_CARD}, randomFoto);
+// eslint-disable-next-line no-console
+console.log(createFotos());
