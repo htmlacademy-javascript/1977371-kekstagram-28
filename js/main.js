@@ -104,3 +104,5 @@ const randomFoto = () => {
 const createFotos = () => Array.from({length: PHOTO_CARD}, randomFoto);
 // eslint-disable-next-line no-console
 console.log(createFotos());
+// eslint-disable-next-line no-console
+console.log(randomFotoDescription());
