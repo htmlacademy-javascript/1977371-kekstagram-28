@@ -1,5 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 const PHOTO_CARD = 25;
+const randomNumber = {
+  randomStartNumber: 1, // От какого числа генерировать
+  randomEndNumber: 25, // До какого числа генерировать
+};
+
 
 const getRandomPositiveInteger = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -9,23 +14,19 @@ const getRandomPositiveInteger = (a, b) => {
 };
 
 // id, число — идентификатор описания. Это число от 1 до 25. Идентификаторы не должны повторяться.
-const randomStartId = 1; // От какого числа генерировать
-const randomEndId = 25; // До какого числа генерировать
-const arrayId = [];
-for (let i = randomStartId; i <= randomEndId; i++) {
-  arrayId.push(i);
+const getArrayId = [];
+for (let i = randomNumber.randomStartNumber; i <= randomNumber.randomEndNumber; i++) {
+  getArrayId.push(i);
 }
 
 // url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
-const randomStartUrl = 1; // От какого генерировать
-const randomEndUrl = 25; // До какого генерировать
-const arrayUrl = [];
-for (let i = randomStartUrl; i <= randomEndUrl; i++) {
-  arrayUrl.push(i);
+const getArrayUrl = [];
+for (let i = randomNumber.randomStartNumber; i <= randomNumber.randomEndNumber; i++) {
+  getArrayUrl.push(i);
 }
 
 // description, строка — описание фотографии. Описание придумайте самостоятельно.
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Солнечный день',
   'Хорошее настроение',
   'Счастливая улыбка',
@@ -64,8 +65,8 @@ const Names = [
 ];
 
 
-const randomFotoDescription = () => {
-  const randomIdIndex = arrayId.shift();
+const randomFotoDescriptions = () => {
+  const randomIdIndex = getArrayId.shift();
   const randomNamesIndex = getRandomPositiveInteger(0, Names.length - 1);
   const randomMessageIndex = getRandomPositiveInteger(0, Message.length - 1);
 
@@ -80,7 +81,7 @@ const randomFotoDescription = () => {
 const createComments = (number) => {
   const comments = [];
   for (let i = 0; i < number; i++) {
-    const comment = randomFotoDescription();
+    const comment = randomFotoDescriptions();
     comments.push(comment);
   }
   return comments;
@@ -88,15 +89,15 @@ const createComments = (number) => {
 
 
 const randomFoto = () => {
-  const randomUrlIndex = arrayUrl.shift();
-  const description = DESCRIPTION[getRandomPositiveInteger(0, 4)];
+  const randomUrlIndex = getArrayUrl.shift();
+  const descriptions = DESCRIPTIONS[getRandomPositiveInteger(0, 4)];
   const likes = getRandomIntInc(15, 200);
 
   return {
     id: randomUrlIndex,
     url: `photos/${randomUrlIndex}.jpg `,
     likes,
-    description,
+    descriptions,
     comments: createComments(getRandomPositiveInteger(1, 2)),
   };
 };
@@ -105,4 +106,4 @@ const createFotos = () => Array.from({length: PHOTO_CARD}, randomFoto);
 // eslint-disable-next-line no-console
 console.log(createFotos());
 // eslint-disable-next-line no-console
-console.log(randomFotoDescription());
+console.log(randomFotoDescriptions());
