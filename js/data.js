@@ -11,7 +11,7 @@ const DESCRIPTIONS = [
 ];
 
 // Для формирования текста комментария — message — вам необходимо взять одно или два случайных предложения из представленных ниже:
-const Message = [
+const MESSEGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -21,7 +21,7 @@ const Message = [
 ];
 
 // имена авторов комментариев
-const Names = [
+const NAMES = [
   'Иван',
   'Константин',
   'Мария',
@@ -34,14 +34,14 @@ const Names = [
 
 const randomFotoDescriptions = () => {
   const randomIdIndex = createRandomUniqId(1, 25);
-  const randomNamesIndex = getRandomPositiveInteger(0, Names.length - 1);
-  const randomMessageIndex = getRandomPositiveInteger(0, Message.length - 1);
+  const randomNamesIndex = getRandomPositiveInteger(0, NAMES.length - 1);
+  const randomMessageIndex = getRandomPositiveInteger(0, MESSEGES.length - 1);
 
   return {
     id: randomIdIndex(),
     avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
-    message: Message[randomMessageIndex],
-    name: Names[randomNamesIndex],
+    message: MESSEGES[randomMessageIndex],
+    name: NAMES[randomNamesIndex],
   };
 };
 
