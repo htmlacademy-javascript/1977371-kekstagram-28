@@ -72,4 +72,5 @@ const randomFoto = () => {
 
 const createFotos = () => Array.from({length: PHOTO_CARD}, randomFoto);
 
+// module5-task1
 export {createFotos, randomFotoDescriptions};
